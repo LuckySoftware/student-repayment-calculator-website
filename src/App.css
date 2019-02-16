@@ -1,32 +1,29 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.wrapper {
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.test {
+    border-radius: 25px;
+    grid-column: 2;
+    margin-top: 30%;
+    width: 100%;
+    background: #ffffff;
+    padding-bottom: 35px;
+    font-family: "SF Pro Display",
+    "SF Pro Icons",
+    "Helvetica Neue",
+    "Helvetica",
+    "Arial",
+    sans-serif;
+    transition: ease-in;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+    background-image: url("images/mountains.jpg");
+    background-repeat: no-repeat;
 }
