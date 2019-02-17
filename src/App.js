@@ -8,7 +8,7 @@ class App extends Component {
         currentPositionInForm: 0,
 
         didStudentResitAYear: null,
-        wasCourseFourYearsLong: false,
+        wasCourseFourYearsLong: true,
 
         startingYear: null,
         firstYearTuition: null,
@@ -111,7 +111,22 @@ class App extends Component {
         return (
             <>
                 <div className="wrapper">
-                    <div className="test">
+                    <div className="stepIndicator">
+                        <div className="stepGrid">
+                            <div className="step">
+                                First
+                            </div>
+                            <div/>
+                            <div className="step">
+                                Second
+                            </div>
+                            <div/>
+                            <div className="step">
+                                Third
+                            </div>
+                        </div>
+                    </div>
+                    <div className="formBody">
                         <form>
                             {this.displayForm()}
                         </form>
