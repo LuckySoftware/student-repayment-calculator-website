@@ -24,7 +24,9 @@ class App extends Component {
         yearOfGraduation: null,
 
         yearlyIncome: null,
-        yearlyRaise: null
+        yearlyRaise: null,
+
+        directionInForm: null,
     };
 
     studentWhoDidResitAYearForm = () => {
@@ -69,16 +71,44 @@ class App extends Component {
         }
     };
 
+    setAnimation = () => {
+        this.animationForFirstStep = "test";
+    };
+
+    animateStepIndicator = () => {
+        if (this.state.directionInForm !== null) {
+            switch (this.state.currentPositionInForm) {
+                case 0:
+                    if (this.state.directionInForm === "next") {
+
+                    } else if (this.state.directionInForm === "previous") {
+
+                    }
+                    break;
+                case 1:
+                    if (this.state.directionInForm === "next") {
+                        this.setAnimation()
+                    }
+                    break;
+                case 2:
+                    break;
+                default:
+            }
+        }
+    };
+
     update = (name, value) => {
         this.setState({name: value})
     };
 
     prev = () => {
-        this.setState({currentPositionInForm: this.state.currentPositionInForm - 1})
+        this.setState({currentPositionInForm: this.state.currentPositionInForm - 1});
+        this.setState({directionInForm: "previous"})
     };
 
     next = () => {
-        this.setState({currentPositionInForm: this.state.currentPositionInForm + 1})
+        this.setState({currentPositionInForm: this.state.currentPositionInForm + 1});
+        this.setState({directionInForm: "next"})
     };
 
     displayForm = () => {
@@ -86,7 +116,6 @@ class App extends Component {
             case 0:
                 return (
                     <FirstSection
-                        update={this.update}
                         didStudentResitAYear={this.state.didStudentResitAYear}
                         wasCourseFourYearsLong={this.state.wasCourseFourYearsLong}
                         next={this.next}
@@ -95,7 +124,7 @@ class App extends Component {
             case 1:
                 return (
                     <SecondSection
-                        update={this.update}
+                        update={this.updateToggle}
                         didStudentResitAYear={this.state.didStudentResitAYear}
                         wasCourseFourYearsLong={this.state.wasCourseFourYearsLong}
                         next={this.next}
@@ -108,12 +137,15 @@ class App extends Component {
     };
 
     render() {
+        this.animateStepIndicator();
+        console.log(this.animationForFirstStep);
+        //TODO Make step indicator work
         return (
             <>
                 <div className="wrapper">
                     <div className="stepIndicator">
                         <div className="stepGrid">
-                            <div className="step">
+                            <div className={"step"}>
                                 First
                             </div>
                             <div/>

@@ -16,15 +16,10 @@
 
 .radioButtons label {
     display: inline-block;
-    /*background-color: white;*/
     padding: 10px 20px;
     font-family: Arial;
     font-size: 16px;
     width: auto;
-}
-
-.radioButtons label:hover {
-    /*background-color: gray;*/
 }
 
 .radioButtons input[type="radio"]:checked + label {
@@ -36,86 +31,4 @@
 fieldset {
     margin-right: 20px;
     margin-left: 20px;
-}
-
-.buttonContainer {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.buttonContainer label {
-    height: 20px;
-    display: inline-block;
-    /*background-color: white;*/
-    padding: 10px 20px;
-    border: black 2px solid;
-    border-radius: 30px;
-    font-family: "SF Pro Display",
-    "SF Pro Icons",
-    "Helvetica Neue",
-    "Helvetica",
-    "Arial",
-    sans-serif;
-    font-size: 16px;
-    width: 15%;
-}
-
-.buttonContainer input[type="button"] {
-    opacity: 0;
-    position: absolute;
-}
-
-.button {
-    width: 20%;
-    height: 40px;
-    font-family: "SF Pro Display",
-    "SF Pro Icons",
-    "Helvetica Neue",
-    "Helvetica",
-    "Arial",
-    sans-serif;
-    font-size: 13px;
-    background-size: 200% 100%;
-    background-position: 100% 0;
-    background-image: linear-gradient(to left, transparent, transparent 50%, black 50%, black);
-}
-
-.before {
-    -webkit-animation-name: testAnimation;
-    -moz-animation-name: testAnimation;
-    -o-animation-name: testAnimation;
-    animation-name: testAnimation;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-}
-
-.after {
-    -webkit-animation-name: testAnimation2;
-    -moz-animation-name: testAnimation2;
-    -o-animation-name: testAnimation2;
-    animation-name: testAnimation2;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-}
-
-@keyframes testAnimation {
-    0% {
-        color: black;
-        background-position: 100% 0;
-    }
-    100% {
-        color: white;
-        background-position: 0 0;
-    }
-}
-
-@keyframes testAnimation2 {
-    0% {
-        color: white;
-        background-position: 0 0;
-    }
-    100% {
-        color: black;
-        background-position: -100% 0;
-    }
 }

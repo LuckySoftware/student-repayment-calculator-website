@@ -1,48 +1,46 @@
 import React, {Component} from 'react';
 import "./FirstSection.css";
+import "../../css/Button.css"
 
 class FirstSection extends Component {
-    constructor(props) {
-        super(props);
-        this.animationClassToAdd = null;
-    }
-
     state = {
         courseFourYearsLong: true,
         didStudentResitAYear: true,
         firstAnimationEnded: false,
         secondAnimationEnded: false,
-        toggle: null,
+        mouseInButton: null,
     };
 
-    entrance = null;
+    animation = null;
 
     handleAnimationEnd = (event) => {
-        if (event.animationName === "testAnimation") {
+        if (event.animationName === "onMouseEnterAnimation") {
             this.setState({"firstAnimationEnded": true})
         }
 
-        if (event.animationName === "testAnimation2") {
+        if (event.animationName === "onMouseLeaveAnimation") {
             this.setState({"secondAnimationEnded": true})
         }
 
     };
 
     setAnimationState = () => {
-        if (this.state.toggle != null) {
+        if (this.state.mouseInButton != null) {
             switch (this.state.firstAnimationEnded) {
                 case true:
                     if (this.state.secondAnimationEnded === true) {
                         this.setState({"firstAnimationEnded": false});
                         this.setState({"secondAnimationEnded": false})
-                    } else if (this.state.toggle === false) {
-                        this.entrance = "after";
+                    } else if (this.state.mouseInButton === false) {
+                        this.animation = "slideOutToRight";
                     }
                     break;
 
                 case false:
-                    if (this.state.secondAnimationEnded === false && this.entrance !== "before" && this.state.toggle === true) {
-                        this.entrance = "before";
+                    if (this.state.secondAnimationEnded === false
+                        && this.animation !== "slideInFromLeft"
+                        && this.state.mouseInButton === true) {
+                        this.animation = "slideInFromLeft";
                     }
                     break;
                 default:
@@ -52,9 +50,7 @@ class FirstSection extends Component {
     };
 
     wasCourseFourYearsLongForm = () => {
-        if (this.state.didStudentResitAYear === true) {
-            return null;
-        } else {
+        if (this.state.didStudentResitAYear !== true) {
             return (
                 <>
                     <fieldset>
@@ -79,7 +75,7 @@ class FirstSection extends Component {
                         </div>
                     </fieldset>
                 </>
-            );
+            )
         }
     };
 
@@ -117,13 +113,13 @@ class FirstSection extends Component {
 
                 {this.wasCourseFourYearsLongForm()}
                 <div className="buttonContainer">
-                    <div>
+                    <div className="buttonDiv">
                         <input type="button"/>
                         <label
                             onClick={this.props.next}
-                            onMouseEnter={() => this.setState({"toggle": true})}
-                            onMouseLeave={() => this.setState({"toggle": false})}
-                            className={["button", this.entrance].join(" ")}
+                            onMouseEnter={() => this.setState({"mouseInButton": true})}
+                            onMouseLeave={() => this.setState({"mouseInButton": false})}
+                            className={["button", this.animation].join(" ")}
                             onAnimationEnd={this.handleAnimationEnd}>Next</label>
                     </div>
                 </div>

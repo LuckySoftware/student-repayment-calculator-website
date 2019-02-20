@@ -1,0 +1,68 @@
+.buttonContainer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.buttonDiv {
+    display: inline-block;
+    margin-right: 60px;
+    width: 20%;
+}
+
+.buttonContainer input[type="button"] {
+     opacity: 0;
+     position: absolute;
+ }
+
+.button {
+    display: block;
+    padding: 10px 20px;
+    border: black 2px solid;
+    border-radius: 30px;
+    width: 100%;
+    height: 20px;
+    font-family: "SF Pro Display",
+    "SF Pro Icons",
+    "Helvetica Neue",
+    "Helvetica",
+    "Arial",
+    sans-serif;
+    font-size: 16px;
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    background-image: linear-gradient(to left, transparent, transparent 50%, black 50%, black);
+}
+
+.slideInFromLeft {
+    animation-name: onMouseEnterAnimation;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.slideOutToRight {
+    animation-name: onMouseLeaveAnimation;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes onMouseEnterAnimation {
+    0% {
+        color: black;
+        background-position: 100% 0;
+    }
+    100% {
+        color: white;
+        background-position: 0 0;
+    }
+}
+
+@keyframes onMouseLeaveAnimation {
+    0% {
+        color: white;
+        background-position: 0 0;
+    }
+    100% {
+        color: black;
+        background-position: -100% 0;
+    }
+}
