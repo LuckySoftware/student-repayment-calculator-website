@@ -20,11 +20,12 @@
     "Helvetica",
     "Arial",
     sans-serif;
+    margin-bottom: 70px;
 }
 
 .stepIndicator {
     grid-column: 2;
-    margin-top: 30%;
+    margin-top: 5%;
 }
 
 .stepGrid{
@@ -35,6 +36,8 @@
 body {
     background-image: url("images/mountains.jpg");
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
 }
 
 .step {
@@ -48,7 +51,7 @@ body {
     text-decoration: none;
     color: #666;
     cursor: default;
-    width: 200px;
+    width: 100%;
     text-align: center;
 }
 .step:before {
@@ -83,20 +86,3 @@ body {
 .step:last-of-type:after {
     display: none;
 }
-
-/*.test {*/
-    /*animation-name: stepForward;*/
-    /*animation-duration: 2s;*/
-    /*animation-fill-mode: forwards;*/
-/*}*/
-/**/
-/*@keyframes stepForward {*/
-    /*0% {*/
-        /*color: black;*/
-        /*background-position: 100% 0;*/
-    /*}*/
-    /*100% {*/
-        /*color: white;*/
-        /*background-position: 0 0;*/
-    /*}*/
-/*}*/

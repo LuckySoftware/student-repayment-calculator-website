@@ -4,8 +4,6 @@ import "../../css/Button.css"
 
 class FirstSection extends Component {
     state = {
-        courseFourYearsLong: true,
-        didStudentResitAYear: true,
         firstAnimationEnded: false,
         secondAnimationEnded: false,
         mouseInButton: null,
@@ -50,7 +48,7 @@ class FirstSection extends Component {
     };
 
     wasCourseFourYearsLongForm = () => {
-        if (this.state.didStudentResitAYear !== true) {
+        if (this.props.didStudentResitAYear !== true) {
             return (
                 <>
                     <fieldset>
@@ -62,16 +60,16 @@ class FirstSection extends Component {
                                    id="firstRadioBox"
                                    defaultChecked/>
                             <label
-                                onClick={() => this.setState({"courseFourYearsLong": true})}
+                                onClick={() => this.props.update("courseFourYearsLong", true)}
                                 htmlFor="firstRadioBox">Yes</label>
 
                             <input type="radio"
                                    name="wasCourseFourYearsLong"
                                    value="false"
-                                   id="test"/>
+                                   id="secondRadioBox"/>
                             <label
-                                onClick={() => this.setState({"courseFourYearsLong": false})}
-                                htmlFor="test">No</label>
+                                onClick={() => this.props.update("courseFourYearsLong", false)}
+                                htmlFor="secondRadioBox">No</label>
                         </div>
                     </fieldset>
                 </>
@@ -94,10 +92,7 @@ class FirstSection extends Component {
                                id="thirdRadioBox"
                                defaultChecked/>
                         <label
-                            onClick={() =>
-                                this.setState({
-                                    "didStudentResitAYear": true,
-                                })}
+                            onClick={() => this.props.update("didStudentResitAYear", true)}
                             htmlFor="thirdRadioBox">Yes</label>
 
                         <input type="radio"
@@ -105,7 +100,7 @@ class FirstSection extends Component {
                                value="false"
                                id="forthRadioBox"/>
                         <label
-                            onClick={() => this.setState({"didStudentResitAYear": false})}
+                            onClick={() => this.props.update("didStudentResitAYear", false)}
                             htmlFor="forthRadioBox">No</label>
                     </div>
                 </fieldset>

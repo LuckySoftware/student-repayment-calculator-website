@@ -7,8 +7,8 @@ class App extends Component {
     state = {
         currentPositionInForm: 0,
 
-        didStudentResitAYear: null,
-        wasCourseFourYearsLong: true,
+        courseFourYearsLong: true,
+        didStudentResitAYear: true,
 
         startingYear: null,
         firstYearTuition: null,
@@ -50,55 +50,8 @@ class App extends Component {
         );
     };
 
-    displayThirdYearOptionIfCourseWasFourYearsLong = () => {
-        if (this.state.wasCourseFourYearsLong === 'true')
-            return (
-                <>
-                    <input type="number"
-                           value="thirdYearTuition"
-                           placeholder="test3"
-                           onClick={this.update}/>
-                    <input type="number"
-                           value="thirdYearMaintenance"
-                           placeholder="test4"
-                           onClick={this.update}/>
-                </>
-            );
-        else {
-            return (
-                null
-            );
-        }
-    };
-
-    setAnimation = () => {
-        this.animationForFirstStep = "test";
-    };
-
-    animateStepIndicator = () => {
-        if (this.state.directionInForm !== null) {
-            switch (this.state.currentPositionInForm) {
-                case 0:
-                    if (this.state.directionInForm === "next") {
-
-                    } else if (this.state.directionInForm === "previous") {
-
-                    }
-                    break;
-                case 1:
-                    if (this.state.directionInForm === "next") {
-                        this.setAnimation()
-                    }
-                    break;
-                case 2:
-                    break;
-                default:
-            }
-        }
-    };
-
     update = (name, value) => {
-        this.setState({name: value})
+        this.setState({[name]: value});
     };
 
     prev = () => {
@@ -117,16 +70,16 @@ class App extends Component {
                 return (
                     <FirstSection
                         didStudentResitAYear={this.state.didStudentResitAYear}
-                        wasCourseFourYearsLong={this.state.wasCourseFourYearsLong}
+                        courseFourYearsLong={this.state.courseFourYearsLong}
                         next={this.next}
+                        update={this.update}
                     />
                 );
             case 1:
                 return (
                     <SecondSection
-                        update={this.updateToggle}
                         didStudentResitAYear={this.state.didStudentResitAYear}
-                        wasCourseFourYearsLong={this.state.wasCourseFourYearsLong}
+                        courseFourYearsLong={this.state.courseFourYearsLong}
                         next={this.next}
                         prev={this.prev}
                     />
@@ -137,8 +90,6 @@ class App extends Component {
     };
 
     render() {
-        this.animateStepIndicator();
-        console.log(this.animationForFirstStep);
         //TODO Make step indicator work
         return (
             <>
