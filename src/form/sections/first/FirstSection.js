@@ -58,7 +58,7 @@ class FirstSection extends Component {
                                    name="wasCourseFourYearsLong"
                                    value="true"
                                    id="firstRadioBox"
-                                   defaultChecked/>
+                                   defaultChecked={this.props.courseFourYearsLong}/>
                             <label
                                 onClick={() => this.props.update("courseFourYearsLong", true)}
                                 htmlFor="firstRadioBox">Yes</label>
@@ -66,7 +66,8 @@ class FirstSection extends Component {
                             <input type="radio"
                                    name="wasCourseFourYearsLong"
                                    value="false"
-                                   id="secondRadioBox"/>
+                                   id="secondRadioBox"
+                                   defaultChecked={!this.props.courseFourYearsLong}/>
                             <label
                                 onClick={() => this.props.update("courseFourYearsLong", false)}
                                 htmlFor="secondRadioBox">No</label>
@@ -76,7 +77,6 @@ class FirstSection extends Component {
             )
         }
     };
-
 
     render() {
         this.setAnimationState();
@@ -90,7 +90,7 @@ class FirstSection extends Component {
                                name="didStudentResitAYear"
                                value="true"
                                id="thirdRadioBox"
-                               defaultChecked/>
+                               defaultChecked={this.props.didStudentResitAYear}/>
                         <label
                             onClick={() => this.props.update("didStudentResitAYear", true)}
                             htmlFor="thirdRadioBox">Yes</label>
@@ -98,7 +98,8 @@ class FirstSection extends Component {
                         <input type="radio"
                                name="didStudentResitAYear"
                                value="false"
-                               id="forthRadioBox"/>
+                               id="forthRadioBox"
+                               defaultChecked={!this.props.didStudentResitAYear}/>
                         <label
                             onClick={() => this.props.update("didStudentResitAYear", false)}
                             htmlFor="forthRadioBox">No</label>

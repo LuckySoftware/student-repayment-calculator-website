@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import StudentWhoDidNotResitAYear from "./StudentWhoDidNotResitAYear";
 import StudentWhoDidResitAYear from "./StudentWhoDidResitAYear";
 import "../../css/Button.css"
+import "../../css/TextField.css"
+import {createMuiTheme, MuiThemeProvider} from "@material-ui/core";
+
 
 class SecondSection extends Component {
     state = {
@@ -16,23 +19,33 @@ class SecondSection extends Component {
     };
 
     loadSectionDependingOnWhatWasSelectedInPrevious = () => {
-      if(this.props.didStudentResitAYear === true){
-          return(
-              <StudentWhoDidNotResitAYear/>
-          );
-      }
-      else{
-          return(
-              <StudentWhoDidResitAYear/>
-          );
-      }
+        if (this.props.didStudentResitAYear === false) {
+            return (
+                <StudentWhoDidNotResitAYear
+                    update={this.props.update}
+                    courseFourYearsLong={this.props.courseFourYearsLong}
+                    startingYear={this.props.startingYear}
+                    firstYearTuition={this.props.firstYearTuition}
+                    firstYearMaintenance={this.props.firstYearMaintenance}
+                    secondYearTuition={this.props.secondYearTuition}
+                    secondYearMaintenance={this.props.secondYearMaintenance}
+                    thirdYearTuition={this.props.thirdYearTuition}
+                    thirdYearMaintenance={this.props.thirdYearMaintenance}
+                    finalYearTuition={this.props.finalYearTuition}
+                    finalYearMaintenance={this.props.finalYearMaintenance} />
+            );
+        } else {
+            return (
+                <StudentWhoDidResitAYear/>
+            );
+        }
     };
 
     animationForFirstButton = null;
     animationForSecondButton = null;
 
     handleAnimationEnd = (event, buttonName) => {
-        if(buttonName === "next"){
+        if (buttonName === "next") {
             if (event.animationName === "onMouseEnterAnimation") {
                 this.setState({"firstAnimationEndedForNext": true})
             }
@@ -42,7 +55,7 @@ class SecondSection extends Component {
             }
         }
 
-        if(buttonName === "previous"){
+        if (buttonName === "previous") {
             if (event.animationName === "onMouseEnterAnimation") {
                 this.setState({"firstAnimationEndedForPrev": true})
             }
@@ -99,21 +112,21 @@ class SecondSection extends Component {
         }
     };
 
+    theme = () => createMuiTheme({
+        palette: {
+            primary: {main: '#000000'}, // Purple and green play nicely together.
+        },
+        typography: {useNextVariants: true},
+    });
+
     render() {
         this.setAnimationState();
         return (
             <>
+                <MuiThemeProvider theme={this.theme}>
+                {this.loadSectionDependingOnWhatWasSelectedInPrevious()}
+                </MuiThemeProvider>
                 <div className="buttonContainer">
-                    <div className="buttonDiv">
-                        <input type="button"/>
-                        <label
-                            onClick={this.props.next}
-                            onMouseEnter={() => this.setState({"mouseInFirstButton": true})}
-                            onMouseLeave={() => this.setState({"mouseInFirstButton": false})}
-                            className={["button", this.animationForFirstButton].join(" ")}
-                            onAnimationEnd={(event) => this.handleAnimationEnd(event, "next")}>Next</label>
-                    </div>
-
                     <div className="buttonDiv">
                         <input type="button"/>
                         <label
@@ -122,6 +135,16 @@ class SecondSection extends Component {
                             onMouseLeave={() => this.setState({"mouseInSecondButton": false})}
                             className={["button", this.animationForSecondButton].join(" ")}
                             onAnimationEnd={(event) => this.handleAnimationEnd(event, "previous")}>Previous</label>
+                    </div>
+
+                    <div className="buttonDiv">
+                        <input type="button"/>
+                        <label
+                            onClick={this.props.next}
+                            onMouseEnter={() => this.setState({"mouseInFirstButton": true})}
+                            onMouseLeave={() => this.setState({"mouseInFirstButton": false})}
+                            className={["button", this.animationForFirstButton].join(" ")}
+                            onAnimationEnd={(event) => this.handleAnimationEnd(event, "next")}>Next</label>
                     </div>
                 </div>
             </>

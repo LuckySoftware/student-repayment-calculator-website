@@ -78,8 +78,20 @@ class App extends Component {
             case 1:
                 return (
                     <SecondSection
+                        update={this.update}
                         didStudentResitAYear={this.state.didStudentResitAYear}
                         courseFourYearsLong={this.state.courseFourYearsLong}
+
+                        startingYear={this.state.startingYear}
+                        firstYearTuition={this.state.firstYearTuition}
+                        firstYearMaintenance={this.state.firstYearMaintenance}
+                        secondYearTuition={this.state.secondYearTuition}
+                        secondYearMaintenance={this.state.secondYearMaintenance}
+                        thirdYearTuition={this.state.thirdYearTuition}
+                        thirdYearMaintenance={this.state.thirdYearMaintenance}
+                        finalYearTuition={this.state.finalYearTuition}
+                        finalYearMaintenance={this.state.finalYearMaintenance}
+
                         next={this.next}
                         prev={this.prev}
                     />

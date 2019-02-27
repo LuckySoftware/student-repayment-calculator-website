@@ -1,0 +1,8 @@
+.wrapper{
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+}
+
+.columnTwo{
+    grid-column: 2;
+}
