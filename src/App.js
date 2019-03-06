@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import FirstSection from "./form/sections/first/FirstSection";
 import SecondSection from "./form/sections/second/SecondSection";
+import ThirdSection from "./form/sections/third/ThirdSection";
 
 class App extends Component {
     state = {
@@ -97,6 +98,15 @@ class App extends Component {
 
                         next={this.next}
                         prev={this.prev}
+                    />
+                );
+
+            case 2:
+                return (
+                    <ThirdSection
+                        prev={this.prev}
+                        yearlyIncome={this.state.yearlyIncome}
+                        yearlyRaise={this.state.yearlyRaise}
                     />
                 );
             default:
