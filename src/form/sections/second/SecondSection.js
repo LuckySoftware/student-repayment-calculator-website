@@ -36,7 +36,11 @@ class SecondSection extends Component {
             );
         } else {
             return (
-                <StudentWhoDidResitAYear/>
+                <StudentWhoDidResitAYear
+                    totalStudentLoanDebt={this.props.totalStudentLoanDebt}
+                    yearOfGraduation={this.props.yearOfGraduation}
+                    update={this.props.update}
+                />
             );
         }
     };

@@ -92,6 +92,9 @@ class App extends Component {
                         finalYearTuition={this.state.finalYearTuition}
                         finalYearMaintenance={this.state.finalYearMaintenance}
 
+                        totalStudentLoanDebt={this.state.totalStudentLoanDebt}
+                        yearOfGraduation={this.state.yearOfGraduation}
+
                         next={this.next}
                         prev={this.prev}
                     />
