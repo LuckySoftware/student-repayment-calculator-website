@@ -5,6 +5,10 @@ import SecondSection from "./form/sections/second/SecondSection";
 import ThirdSection from "./form/sections/third/ThirdSection";
 
 class App extends Component {
+    componentDidMount(){
+        document.title = "Student Repayment Calculator";
+    }
+
     state = {
         currentPositionInForm: 0,
 
@@ -28,27 +32,9 @@ class App extends Component {
         yearlyRaise: null,
 
         directionInForm: null,
-    };
 
-    studentWhoDidResitAYearForm = () => {
-        return (
-            <>
-                <input type="number" value="totalStudentLoanDebt" onClick={this.update}/>
-                <input type="number" value="yearOfGraduation" onClick={this.update}/>
-
-                <input
-                    type="button"
-                    value="Previous"
-                    onClick={this.prev}
-                />
-
-                <input
-                    type="button"
-                    value="Next"
-                    onClick={this.next}
-                />
-            </>
-        );
+        secondStepColor: "white",
+        thirdStepColor: "white"
     };
 
     update = (name, value) => {
@@ -56,13 +42,51 @@ class App extends Component {
     };
 
     prev = () => {
-        this.setState({currentPositionInForm: this.state.currentPositionInForm - 1});
-        this.setState({directionInForm: "previous"})
+        this.setState({currentPositionInForm: this.state.currentPositionInForm - 1}, () =>
+            this.updateSteps());
+        this.setState({directionInForm: "previous"});
+        this.updateSteps();
     };
 
     next = () => {
-        this.setState({currentPositionInForm: this.state.currentPositionInForm + 1});
-        this.setState({directionInForm: "next"})
+        this.setState({currentPositionInForm: this.state.currentPositionInForm + 1}, () =>
+        this.updateSteps());
+        this.setState({directionInForm: "next"});
+        this.updateSteps();
+    };
+
+    updateSteps = () => {
+        console.log(this.state.currentPositionInForm);
+        switch (this.state.currentPositionInForm) {
+            case 0:
+                this.setState({secondStepColor: null});
+                break;
+            case 1:
+                this.setState({secondStepColor: "black"});
+                this.setState({thirdStepColor: null});
+                break;
+            case 2:
+                this.setState({thirdStepColor: "black"});
+                break;
+            default:
+                return null;
+        }
+    };
+
+    submit = () => {
+        // console.log("making a request");
+        // const result = fetch('http://localhost:8080/yearlyRepayment', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({
+        //         salary: 45000,
+        //     })
+        // });
+        //
+        // console.log(result);
     };
 
     displayForm = () => {
@@ -107,6 +131,8 @@ class App extends Component {
                         prev={this.prev}
                         yearlyIncome={this.state.yearlyIncome}
                         yearlyRaise={this.state.yearlyRaise}
+                        submit={this.submit()}
+                        update={this.update}
                     />
                 );
             default:
@@ -115,21 +141,20 @@ class App extends Component {
     };
 
     render() {
-        //TODO Make step indicator work
         return (
             <>
                 <div className="wrapper">
                     <div className="stepIndicator">
                         <div className="stepGrid">
-                            <div className={"step"}>
+                            <div className={["step", "black"].join(" ")}>
                                 First
                             </div>
                             <div/>
-                            <div className="step">
+                            <div className={["step", this.state.secondStepColor].join(" ")}>
                                 Second
                             </div>
                             <div/>
-                            <div className="step">
+                            <div className={["step", this.state.thirdStepColor].join(" ")}>
                                 Third
                             </div>
                         </div>

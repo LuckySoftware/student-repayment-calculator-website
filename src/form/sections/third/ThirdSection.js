@@ -145,7 +145,7 @@ class ThirdSection extends Component {
                     <div className="buttonDiv">
                         <input type="button"/>
                         <label
-                            onClick={this.props.next}
+                            onClick={this.props.submit}
                             onMouseEnter={() => this.setState({"mouseInFirstButton": true})}
                             onMouseLeave={() => this.setState({"mouseInFirstButton": false})}
                             className={["button", this.animationForFirstButton].join(" ")}
