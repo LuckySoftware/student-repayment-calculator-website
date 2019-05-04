@@ -1,12 +1,20 @@
 import React, {Component} from 'react';
-import StudentWhoDidNotResitAYear from "./StudentWhoDidNotResitAYear";
-import StudentWhoDidResitAYear from "./StudentWhoDidResitAYear";
 import "../../css/Button.css"
 import "../../css/TextField.css"
+import TextField from '@material-ui/core/TextField';
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core";
 
+const test = {
+    color:"blue"
+};
 
-class SecondSection extends Component {
+const styles = {
+    root: {
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    },
+};
+
+class ForthSection extends Component {
     state = {
         firstAnimationEndedForNext: false,
         secondAnimationEndedForNext: false,
@@ -18,38 +26,11 @@ class SecondSection extends Component {
         mouseInSecondButton: null
     };
 
-    loadSectionDependingOnWhatWasSelectedInPrevious = () => {
-        if (this.props.didStudentResitAYear === false) {
-            return (
-                <StudentWhoDidNotResitAYear
-                    update={this.props.update}
-                    courseFourYearsLong={this.props.courseFourYearsLong}
-                    startingYear={this.props.startingYear}
-                    firstYearTuition={this.props.firstYearTuition}
-                    firstYearMaintenance={this.props.firstYearMaintenance}
-                    secondYearTuition={this.props.secondYearTuition}
-                    secondYearMaintenance={this.props.secondYearMaintenance}
-                    thirdYearTuition={this.props.thirdYearTuition}
-                    thirdYearMaintenance={this.props.thirdYearMaintenance}
-                    finalYearTuition={this.props.finalYearTuition}
-                    finalYearMaintenance={this.props.finalYearMaintenance} />
-            );
-        } else {
-            return (
-                <StudentWhoDidResitAYear
-                    totalStudentLoanDebt={this.props.totalStudentLoanDebt}
-                    yearOfGraduation={this.props.yearOfGraduation}
-                    update={this.props.update}
-                />
-            );
-        }
-    };
-
     animationForFirstButton = null;
     animationForSecondButton = null;
 
     handleAnimationEnd = (event, buttonName) => {
-        if (buttonName === "next") {
+        if (buttonName === "home") {
             if (event.animationName === "onMouseEnterAnimation") {
                 this.setState({"firstAnimationEndedForNext": true})
             }
@@ -118,7 +99,7 @@ class SecondSection extends Component {
 
     theme = () => createMuiTheme({
         palette: {
-            primary: {main: '#000000'},
+            root: {main: '#000000'},
         },
         typography: {useNextVariants: true},
     });
@@ -128,27 +109,68 @@ class SecondSection extends Component {
         return (
             <>
                 <MuiThemeProvider theme={this.theme}>
-                {this.loadSectionDependingOnWhatWasSelectedInPrevious()}
+                    <div className="wrapper">
+                        <div className="columnTwo">
+                            <h1>Total amount paid:</h1>
+                            <TextField
+                                type="number"
+                                required
+                                fullWidth
+                                id="outlined-bare"
+                                margin="normal"
+                                variant="outlined"
+                                disabled
+                                defaultValue={this.props.result["totalAmountPaid"]}
+                            />
+
+                            <h1>Remaining debt:</h1>
+                            <TextField
+                                type="number"
+                                required
+                                fullWidth
+                                id="outlined-bare"
+                                margin="normal"
+                                variant="outlined"
+                                disabled
+                                defaultValue={this.props.result["remainingAmountOfStudentLoan"]}
+                            />
+
+                            <h1>Total amount of years spent paying:</h1>
+                            <TextField
+                                type="number"
+                                required
+                                fullWidth
+                                id="outlined-bare"
+                                margin="normal"
+                                variant="outlined"
+                                disabled
+                                defaultValue={this.props.result["totalAmountOfYearsSpentPayingStudentLoan"]}
+                            />
+
+                            <h1>Total amount of months spent paying:</h1>
+                            <TextField
+                                type="number"
+                                required
+                                fullWidth
+                                id="outlined-bare"
+                                margin="normal"
+                                variant="outlined"
+                                disabled
+                                defaultValue={this.props.result["totalAmountOfMonthsSpentPayingStudentLoan"]}
+                            />
+                        </div>
+                    </div>
                 </MuiThemeProvider>
+
                 <div className="buttonContainer">
                     <div className="buttonDiv">
                         <input type="button"/>
                         <label
-                            onClick={this.props.prev}
-                            onMouseEnter={() => this.setState({"mouseInSecondButton": true})}
-                            onMouseLeave={() => this.setState({"mouseInSecondButton": false})}
-                            className={["button", this.animationForSecondButton].join(" ")}
-                            onAnimationEnd={(event) => this.handleAnimationEnd(event, "previous")}>Previous</label>
-                    </div>
-
-                    <div className="buttonDiv">
-                        <input type="button"/>
-                        <label
-                            onClick={this.props.next}
+                            onClick={this.props.backToStart}
                             onMouseEnter={() => this.setState({"mouseInFirstButton": true})}
                             onMouseLeave={() => this.setState({"mouseInFirstButton": false})}
                             className={["button", this.animationForFirstButton].join(" ")}
-                            onAnimationEnd={(event) => this.handleAnimationEnd(event, "next")}>Next</label>
+                            onAnimationEnd={(event) => this.handleAnimationEnd(event, "home")}>Back to start</label>
                     </div>
                 </div>
             </>
@@ -157,4 +179,4 @@ class SecondSection extends Component {
     }
 }
 
-export default SecondSection;
+export default ForthSection;

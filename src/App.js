@@ -3,9 +3,10 @@ import './App.css';
 import FirstSection from "./form/sections/first/FirstSection";
 import SecondSection from "./form/sections/second/SecondSection";
 import ThirdSection from "./form/sections/third/ThirdSection";
+import ForthSection from "./form/sections/forth/ForthSection";
 
 class App extends Component {
-    componentDidMount(){
+    componentDidMount() {
         document.title = "Student Repayment Calculator";
     }
 
@@ -34,11 +35,18 @@ class App extends Component {
         directionInForm: null,
 
         secondStepColor: "white",
-        thirdStepColor: "white"
+        thirdStepColor: "white",
+
+        result: null
     };
 
     update = (name, value) => {
         this.setState({[name]: value});
+    };
+
+    backToStart = () => {
+        this.setState({currentPositionInForm: 0}, () =>
+            this.updateSteps());
     };
 
     prev = () => {
@@ -50,16 +58,16 @@ class App extends Component {
 
     next = () => {
         this.setState({currentPositionInForm: this.state.currentPositionInForm + 1}, () =>
-        this.updateSteps());
+            this.updateSteps());
         this.setState({directionInForm: "next"});
         this.updateSteps();
     };
 
     updateSteps = () => {
-        console.log(this.state.currentPositionInForm);
         switch (this.state.currentPositionInForm) {
             case 0:
                 this.setState({secondStepColor: null});
+                this.setState({thirdStepColor: null});
                 break;
             case 1:
                 this.setState({secondStepColor: "black"});
@@ -74,19 +82,47 @@ class App extends Component {
     };
 
     submit = () => {
-        // console.log("making a request");
-        // const result = fetch('http://localhost:8080/yearlyRepayment', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         salary: 45000,
-        //     })
-        // });
-        //
-        // console.log(result);
+        let jsonBody;
+        let requestUrl;
+
+        if (this.state.didStudentResitAYear === false) {
+            requestUrl = 'http://18.130.193.95/noresit';
+            jsonBody = JSON.stringify({
+                startingYear: this.state.startingYear,
+                wasCourseFourYearsLong: this.state.wasCourseFourYearsLong,
+                firstYearTuition: this.state.firstYearTuition,
+                firstYearMaintenance: this.state.firstYearMaintenance,
+                secondYearTuition: this.state.secondYearTuition,
+                secondYearMaintenance: this.state.secondYearMaintenance,
+                thirdYearTuition: this.state.thirdYearTuition,
+                thirdYearMaintenance: this.state.thirdYearMaintenance,
+                finalYearTuition: this.state.finalYearTuition,
+                finalYearMaintenance: this.state.finalYearMaintenance,
+                yearlyIncome: this.state.yearlyIncome,
+                yearlyRaise: this.state.yearlyRaise
+            });
+        } else {
+            requestUrl = 'http://18.130.193.95/resit';
+            jsonBody = JSON.stringify({
+                totalDebt: this.state.totalStudentLoanDebt,
+                yearlyIncome: this.state.yearlyIncome,
+                yearlyRaise: this.state.yearlyRaise,
+                yearOfGraduation: this.state.yearOfGraduation
+            });
+        }
+
+        fetch(requestUrl, {
+            method: 'POST',
+            dataType: 'json',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: jsonBody
+        }).then(response => response.json())
+            .then(data => this.setState({result: data}))
+            .then(this.next);
+        //data["repaymentAmount"] example of how to get data of a json object in react
     };
 
     displayForm = () => {
@@ -131,8 +167,17 @@ class App extends Component {
                         prev={this.prev}
                         yearlyIncome={this.state.yearlyIncome}
                         yearlyRaise={this.state.yearlyRaise}
-                        submit={this.submit()}
+                        submit={this.submit}
                         update={this.update}
+                    />
+                );
+
+            case 3:
+                return (
+                    <ForthSection
+                        update={this.update}
+                        result={this.state.result}
+                        backToStart={this.backToStart}
                     />
                 );
             default:
