@@ -40,7 +40,7 @@ class ForthSection extends Component {
             }
         }
 
-        if (buttonName === "previous") {
+        if (buttonName === "resubmit") {
             if (event.animationName === "onMouseEnterAnimation") {
                 this.setState({"firstAnimationEndedForPrev": true})
             }
@@ -158,6 +158,32 @@ class ForthSection extends Component {
                                 disabled
                                 defaultValue={this.props.result["totalAmountOfMonthsSpentPayingStudentLoan"]}
                             />
+
+                            <h1>Yearly income:</h1>
+                            <TextField
+                                type="number"
+                                required
+                                fullWidth
+                                id="outlined-required"
+                                label="Yearly income"
+                                margin="normal"
+                                variant="outlined"
+                                onChange={(e) => this.props.update("yearlyIncome", e.target.value)}
+                                defaultValue={this.props.yearlyIncome}
+                            />
+
+                            <h1>Yearly raise:</h1>
+                            <TextField
+                                type="number"
+                                required
+                                fullWidth
+                                id="outlined-required"
+                                label="Yearly raise"
+                                margin="normal"
+                                variant="outlined"
+                                onChange={(e) => this.props.update("yearlyRaise", e.target.value)}
+                                defaultValue={this.props.yearlyRaise}
+                            />
                         </div>
                     </div>
                 </MuiThemeProvider>
@@ -166,11 +192,20 @@ class ForthSection extends Component {
                     <div className="buttonDiv">
                         <input type="button"/>
                         <label
+                            onClick={this.props.submit}
+                            onMouseEnter={() => this.setState({"mouseInSecondButton": true})}
+                            onMouseLeave={() => this.setState({"mouseInSecondButton": false})}
+                            className={["button", this.animationForSecondButton].join(" ")}
+                            onAnimationEnd={(event) => this.handleAnimationEnd(event, "resubmit")}>Resubmit</label>
+                    </div>
+                    <div className="buttonDiv">
+                        <input type="button"/>
+                        <label
                             onClick={this.props.backToStart}
                             onMouseEnter={() => this.setState({"mouseInFirstButton": true})}
                             onMouseLeave={() => this.setState({"mouseInFirstButton": false})}
                             className={["button", this.animationForFirstButton].join(" ")}
-                            onAnimationEnd={(event) => this.handleAnimationEnd(event, "home")}>Back to start</label>
+                            onAnimationEnd={(event) => this.handleAnimationEnd(event, "home")}>Reset</label>
                     </div>
                 </div>
             </>
