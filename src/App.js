@@ -4,6 +4,7 @@ import FirstSection from "./form/sections/first/FirstSection";
 import SecondSection from "./form/sections/second/SecondSection";
 import ThirdSection from "./form/sections/third/ThirdSection";
 import ForthSection from "./form/sections/forth/ForthSection";
+import Navigation from "./navigation/Navigation";
 
 class App extends Component {
     componentDidMount() {
@@ -57,10 +58,12 @@ class App extends Component {
     };
 
     next = () => {
-        this.setState({currentPositionInForm: this.state.currentPositionInForm + 1}, () =>
-            this.updateSteps());
-        this.setState({directionInForm: "next"});
-        this.updateSteps();
+        if (this.state.currentPositionInForm !== 3) {
+            this.setState({currentPositionInForm: this.state.currentPositionInForm + 1}, () =>
+                this.updateSteps());
+            this.setState({directionInForm: "next"});
+            this.updateSteps();
+        }
     };
 
     updateSteps = () => {
@@ -86,7 +89,7 @@ class App extends Component {
         let requestUrl;
 
         if (this.state.didStudentResitAYear === false) {
-            requestUrl = 'http://18.130.193.95/noresit';
+            requestUrl = 'https://backend.studentrepaymentcalculator.com/noresit';
             jsonBody = JSON.stringify({
                 startingYear: this.state.startingYear,
                 wasCourseFourYearsLong: this.state.wasCourseFourYearsLong,
@@ -102,7 +105,7 @@ class App extends Component {
                 yearlyRaise: this.state.yearlyRaise
             });
         } else {
-            requestUrl = 'http://18.130.193.95/resit';
+            requestUrl = 'https://backend.studentrepaymentcalculator.com/resit';
             jsonBody = JSON.stringify({
                 totalDebt: this.state.totalStudentLoanDebt,
                 yearlyIncome: this.state.yearlyIncome,
@@ -168,6 +171,7 @@ class App extends Component {
                         yearlyIncome={this.state.yearlyIncome}
                         yearlyRaise={this.state.yearlyRaise}
                         submit={this.submit}
+                        next={this.next}
                         update={this.update}
                     />
                 );
@@ -178,6 +182,8 @@ class App extends Component {
                         update={this.update}
                         result={this.state.result}
                         backToStart={this.backToStart}
+                        yearlyIncome={this.state.yearlyIncome}
+                        yearlyRaise={this.state.yearlyRaise}
                     />
                 );
             default:
@@ -188,6 +194,7 @@ class App extends Component {
     render() {
         return (
             <>
+                <Navigation/>
                 <div className="wrapper">
                     <div className="stepIndicator">
                         <div className="stepGrid">

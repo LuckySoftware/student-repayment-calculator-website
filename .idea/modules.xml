@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/student-debt-calculator-website.iml" filepath="$PROJECT_DIR$/.idea/student-debt-calculator-website.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/student-repayment-calculator-website.iml" filepath="$PROJECT_DIR$/.idea/student-repayment-calculator-website.iml" />
     </modules>
   </component>
 </project>
