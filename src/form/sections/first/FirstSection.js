@@ -19,7 +19,6 @@ class FirstSection extends Component {
         if (event.animationName === "onMouseLeaveAnimation") {
             this.setState({"secondAnimationEnded": true})
         }
-
     };
 
     setAnimationState = () => {
