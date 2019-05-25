@@ -1,0 +1,63 @@
+.growLeft{
+    animation-name: growLeft;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes growLeft {
+    0%{
+        width: 4%;
+    }
+
+    100%{
+        width: 18%;
+    }
+}
+
+.shrinkLeft{
+    animation-name: shrinkLeft;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes shrinkLeft {
+    0%{
+        width: 18%;
+    }
+
+    100%{
+        width: 4%;
+    }
+}
+
+.hide{
+    animation-name: hide;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hide {
+    0%{
+        right: 10%;
+    }
+
+    100%{
+        right: 115%;
+    }
+}
+
+.un-hide{
+    animation-name: un-hide;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes un-hide {
+    0%{
+        right: 115%;
+    }
+
+    100%{
+        right: 10%;
+    }
+}
