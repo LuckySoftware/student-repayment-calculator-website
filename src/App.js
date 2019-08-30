@@ -5,6 +5,7 @@ import SecondSection from "./form/sections/second/SecondSection";
 import ThirdSection from "./form/sections/third/ThirdSection";
 import ForthSection from "./form/sections/forth/ForthSection";
 import Navigation from "./navigation/Navigation";
+import AdComponent from "./advert/Advert";
 
 class App extends Component {
     componentDidMount() {
@@ -216,6 +217,7 @@ class App extends Component {
                             {this.displayForm()}
                         </form>
                     </div>
+                    <AdComponent/>
                 </div>
             </>
         );
