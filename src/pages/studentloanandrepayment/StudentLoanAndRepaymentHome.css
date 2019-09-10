@@ -1,0 +1,91 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+}
+
+.formBody {
+    border-radius: 25px;
+    grid-column: 2;
+    margin-top: 20px;
+    width: 100%;
+    background: #ffffff;
+    padding-bottom: 35px;
+    font-family: "SF Pro Display",
+    "SF Pro Icons",
+    "Helvetica Neue",
+    "Helvetica",
+    "Arial",
+    sans-serif;
+    margin-bottom: 70px;
+}
+
+.stepIndicator {
+    grid-column: 2;
+    margin-top: 5%;
+}
+
+.stepGrid{
+    display: grid;
+    grid-template-columns: 30% 5% 30% 5% 30%;
+}
+
+.step {
+    display: block;
+    float: left;
+    font-weight: bold;
+    background: white;
+    height: 30px;
+    line-height: 32px;
+    position: relative;
+    text-decoration: none;
+    color: black;
+    cursor: default;
+    width: 100%;
+    text-align: center;
+}
+.step:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: -30px;
+    border: 15px solid transparent;
+    border-color: white;
+    border-left-color: transparent;
+}
+
+.step:after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    right: -30px;
+    border: 15px solid transparent;
+    border-left-color: white;
+}
+
+.step:first-of-type:before {
+    display: none;
+}
+
+.step:last-of-type:after {
+    display: none;
+}
+
+.black {
+    background: black;
+    color: white;
+}
+.black:before {
+    border: 15px solid transparent;
+    border-color: black;
+    border-left-color: transparent;
+
+}
+.black:after {
+    border-left-color: black;
+}

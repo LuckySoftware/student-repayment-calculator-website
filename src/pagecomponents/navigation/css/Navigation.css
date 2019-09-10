@@ -1,7 +1,7 @@
 .sidebar{
     background-color: black;
     height: 100%;
-    width: 4%;
+    width: 50px;
     position: fixed;
     text-align: center;
     z-index: 100;
@@ -26,4 +26,12 @@
 
 .navigationIconContainer{
     margin-top: 10px;
+}
+
+.navigationText{
+    color: white;
+}
+
+.navigationText:hover{
+    color: blueviolet;
 }

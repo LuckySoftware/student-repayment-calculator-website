@@ -6,11 +6,11 @@
 
 @keyframes growLeft {
     0%{
-        width: 4%;
+        width: 50px;
     }
 
     100%{
-        width: 18%;
+        width: 250px;
     }
 }
 
@@ -22,11 +22,11 @@
 
 @keyframes shrinkLeft {
     0%{
-        width: 18%;
+        width: 250px;
     }
 
     100%{
-        width: 4%;
+        width: 50px;
     }
 }
 

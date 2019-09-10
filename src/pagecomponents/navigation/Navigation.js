@@ -34,11 +34,12 @@ class Navigation extends Component {
                         <div className="navigationIcon"/>
                         <div className="navigationIcon"/>
                         <div className="navigationIcon"/>
-                    </div>
-                    <div className={["textForSideBar", this.state.navigationBarTextAnimation].join(" ")}>
-                        <h3>Repayment calculator</h3>
-                        <h3>Salary calculator</h3>
-                        <h3>Contact me</h3>
+                        <div className={["textForSideBar", this.state.navigationBarTextAnimation].join(" ")}>
+                            <h3 className={"navigationText"}>Home</h3>
+                            <h3 className={"navigationText"}>Repayment calculator</h3>
+                            <h3 className={"navigationText"}>Salary calculator</h3>
+                            <h3 className={"navigationText"}>Contact me</h3>
+                        </div>
                     </div>
                 </div>
             </>

@@ -1,51 +1,9 @@
 import React, {Component} from 'react';
 import "./FirstSection.css";
-import "../../css/Button.css"
+import "../../../../pagecomponents/button/Button.css"
+import Button from "../../../../pagecomponents/button/Button";
 
 class FirstSection extends Component {
-    state = {
-        firstAnimationEnded: false,
-        secondAnimationEnded: false,
-        mouseInButton: null,
-    };
-
-    animation = null;
-
-    handleAnimationEnd = (event) => {
-        if (event.animationName === "onMouseEnterAnimation") {
-            this.setState({"firstAnimationEnded": true})
-        }
-
-        if (event.animationName === "onMouseLeaveAnimation") {
-            this.setState({"secondAnimationEnded": true})
-        }
-    };
-
-    setAnimationState = () => {
-        if (this.state.mouseInButton != null) {
-            switch (this.state.firstAnimationEnded) {
-                case true:
-                    if (this.state.secondAnimationEnded === true) {
-                        this.setState({"firstAnimationEnded": false});
-                        this.setState({"secondAnimationEnded": false})
-                    } else if (this.state.mouseInButton === false) {
-                        this.animation = "slideOutToRight";
-                    }
-                    break;
-
-                case false:
-                    if (this.state.secondAnimationEnded === false
-                        && this.animation !== "slideInFromLeft"
-                        && this.state.mouseInButton === true) {
-                        this.animation = "slideInFromLeft";
-                    }
-                    break;
-                default:
-            }
-        }
-
-    };
-
     wasCourseFourYearsLongForm = () => {
         if (this.props.didStudentResitAYear !== true) {
             return (
@@ -78,7 +36,6 @@ class FirstSection extends Component {
     };
 
     render() {
-        this.setAnimationState();
         return (
             <>
                 <br/>
@@ -92,7 +49,8 @@ class FirstSection extends Component {
                                defaultChecked={this.props.didStudentResitAYear}/>
                         <label
                             onClick={() => this.props.update("didStudentResitAYear", true)}
-                            htmlFor="thirdRadioBox">Yes</label>
+                            htmlFor="thirdRadioBox">Yes
+                        </label>
 
                         <input type="radio"
                                name="didStudentResitAYear"
@@ -101,22 +59,15 @@ class FirstSection extends Component {
                                defaultChecked={!this.props.didStudentResitAYear}/>
                         <label
                             onClick={() => this.props.update("didStudentResitAYear", false)}
-                            htmlFor="forthRadioBox">No</label>
+                            htmlFor="forthRadioBox">No
+                        </label>
                     </div>
                 </fieldset>
                 <br/>
 
                 {this.wasCourseFourYearsLongForm()}
                 <div className="buttonContainer">
-                    <div className="buttonDiv">
-                        <input type="button"/>
-                        <label
-                            onClick={this.props.next}
-                            onMouseEnter={() => this.setState({"mouseInButton": true})}
-                            onMouseLeave={() => this.setState({"mouseInButton": false})}
-                            className={["button", this.animation].join(" ")}
-                            onAnimationEnd={this.handleAnimationEnd}>Next</label>
-                    </div>
+                    <Button name={"Next"} command={this.props.next}/>
                 </div>
             </>
         )
